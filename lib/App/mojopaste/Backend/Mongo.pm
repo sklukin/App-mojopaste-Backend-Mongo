@@ -9,21 +9,20 @@ my $ID = 0;
 
 sub register {
   my ($self, $app, $config) = @_;
-  my $dir = $app->config('paste_dir');
-  path($dir)->make_path unless -d $dir;
 
+  my $mongo_uri = $ENV{MONGO_URI} || 'mongodb://mongo:27017/paste';
   $app->plugin( 'Mango', {
-    mango      => 'mongodb://mongo:27017/paste',
+    mango      => $mongo_uri,
     helper     => 'db',
     default_db => 'mojopaste',
   });
 
-  $app->helper('paste.load_p' => sub { _load_p($dir, @_) });
-  $app->helper('paste.save_p' => sub { _save_p($dir, @_) });
+  $app->helper('paste.load_p' => sub { _load_p(@_) });
+  $app->helper('paste.save_p' => sub { _save_p(@_) });
 }
 
 sub _load_p {
-  my ($dir, $c, $id) = @_;
+  my ($c, $id) = @_;
   my @res = ('', '');
 
   eval {
@@ -43,7 +42,7 @@ sub _load_p {
 }
 
 sub _save_p {
-  my ($dir, $c, $text) = @_;
+  my ($c, $text) = @_;
   my $id = substr Mojo::Util::md5_sum($$ . time . $ID++), 0, 12;
   my @res = ('', '');
 
