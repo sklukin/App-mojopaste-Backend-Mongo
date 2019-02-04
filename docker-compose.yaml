@@ -1,13 +1,13 @@
 version: '3'
 services:
   mojopaste:
-    image: mojopaste_mongo
+    image: mojopate_mongo
+    build: .
     ports:
       - "3000:8080"
     volumes:
       - ./lib:/app-mojopaste-master/lib
     environment:
-      MOJO_MODE: development
       PASTE_BACKEND: Mongo
       PERLLIB: '/app-mojopaste-master/lib'
   mongo:
