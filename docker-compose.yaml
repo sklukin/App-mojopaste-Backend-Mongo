@@ -9,7 +9,6 @@ services:
       - ./lib:/app-mojopaste-master/lib
     environment:
       PASTE_BACKEND: Mongo
-      PERLLIB: '/app-mojopaste-master/lib'
   mongo:
     image: mongo
     restart: always
