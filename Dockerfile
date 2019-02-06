@@ -1,5 +1,5 @@
 FROM "jhthorsen/mojopaste"
-MAINTAINER sklkin@cpan.org
+MAINTAINER sklukin@cpan.org
 
 WORKDIR /app-mojopaste-master
 

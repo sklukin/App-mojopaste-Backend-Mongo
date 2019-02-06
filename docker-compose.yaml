@@ -1,7 +1,7 @@
 version: '3'
 services:
   mojopaste:
-    image: mojopate_mongo
+    image: mojopaste_mongo
     build: .
     ports:
       - "5555:8080"
