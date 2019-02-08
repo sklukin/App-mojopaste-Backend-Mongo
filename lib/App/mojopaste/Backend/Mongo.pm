@@ -1,9 +1,6 @@
 package App::mojopaste::Backend::Mongo;
 use Mojo::Base 'Mojolicious::Plugin';
-
-use Mojo::File 'path';
-use Mojo::Util qw(encode decode);
-use Text::CSV;
+use Mojo::Promise;
 
 my $ID = 0;
 
