@@ -20,16 +20,14 @@ sub register {
 
 sub _load_p {
   my ($c, $id) = @_;
-  my @res = ('', '');
 
   eval {
-    die "Hacking attempt! paste_id=($id)" if !$id or $id =~ m!\W!;
 
     my $promise = Mojo::Promise->new;
     $c->collection('docs')->find_one({id => $id}, { _id => 0 } => sub {
       my ($collection, $err, $doc) = @_;
-      $promise->resolve( $doc->{body} );
-      $promise->reject( $err );
+
+      return $err ? $promise->reject($err) : $promise->resolve($doc->{body});
     });
 
     return $promise;
@@ -41,17 +39,13 @@ sub _load_p {
 sub _save_p {
   my ($c, $text) = @_;
   my $id = substr Mojo::Util::md5_sum($$ . time . $ID++), 0, 12;
-  my @res = ('', '');
 
   eval {
-    die "Hacking attempt! paste_id=($id)" if !$id or $id =~ m!\W!;
-
     my $promise = Mojo::Promise->new;
-    my $doc = { id => $id, body => $text };
-    $c->collection('docs')->insert($doc => sub {
+    $c->collection('docs')->insert({ id => $id, body => $text } => sub {
       my ($collection, $err, $oid) = @_;
-      $promise->resolve( $id );
-      $promise->reject( $err );
+
+      return $err ? $promise->reject( $err ) : $promise->resolve( $id );
     });
 
     return $promise;
