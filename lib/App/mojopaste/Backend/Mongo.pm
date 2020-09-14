@@ -1,11 +1,11 @@
 package App::mojopaste::Backend::Mongo;
 
-use Mojo::Base 'Mojolicious::Plugin';
-use Mojo::Promise;
-
 use strict;
 use 5.008_005;
 our $VERSION = '0.02';
+
+use Mojo::Base 'Mojolicious::Plugin';
+use Mojo::Promise;
 
 my $ID = 0;
 
@@ -58,7 +58,6 @@ sub _save_p {
     return Mojo::Promise->new->reject($@ || 'Unknown error');
   };
 }
-
 
 1;
 __END__
