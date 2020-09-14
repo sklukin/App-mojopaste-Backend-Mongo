@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # NAME
 
 App::mojopaste::Backend::Mongo - backen for App::mojopaste
