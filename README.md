@@ -1,6 +1,6 @@
 # NAME
 
-App::mojopaste::Backend::Mongo - Blah blah blah
+App::mojopaste::Backend::Mongo - backen for App::mojopaste
 
 # SYNOPSIS
 
@@ -8,7 +8,14 @@ App::mojopaste::Backend::Mongo - Blah blah blah
 
 # DESCRIPTION
 
-App::mojopaste::Backend::Mongo is
+App::mojopaste::Backend::Mongo is backend for https://github.com/jhthorsen/app-mojopaste
+
+How to use
+
+    * install docker and docker-compose
+    * git clone https://github.com/sklukin/App-mojopaste-Backend-Mongo
+    * cd App-mojopaste-Backend-Mongo
+    * docker-compose up
 
 # AUTHOR
 
